@@ -3,8 +3,8 @@ import './App.css';
 import axios from 'axios'
 
 
-//const domain =  'http://ec2-34-209-136-168.us-west-2.compute.amazonaws.com';
-const domain = ''
+//const domain =  'http://ec2-34-209-136-168.us-west-2.compute.amazonaws.com:5000';
+const domain = 'http://localhost:5000'
 const router = `${domain}/api/text`
 
 const DisplayTexts = ({ texts }) => 

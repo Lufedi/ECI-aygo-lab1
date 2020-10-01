@@ -1,11 +1,11 @@
 ###
-GET localhost:3000/api/text
+GET localhost:5000/api/text
 ###
-GET 127.0.0.1:4001/api/text
+GET 127.0.0.1:5000/api/text
 
 ###
 
-POST http://localhost:3000/api/text
+POST http://localhost:5000/api/text
 Content-Type: application/json
 
 {
