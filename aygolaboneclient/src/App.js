@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios'
 
 
-const domain =  'http://localhost:5000/api/text';
+//const domain =  'http://ec2-34-209-136-168.us-west-2.compute.amazonaws.com';
+const domain = ''
+const router = `${domain}/api/text`
 
 const DisplayTexts = ({ texts }) => 
   <div>
@@ -23,7 +25,7 @@ const InputForm = ({ setTexts }) =>  {
   const [text, setText] = useState('')
 
   const sendText = async () => {
-    const response = await axios.post( domain, { value : text })
+    const response = await axios.post( router, { value : text })
     if(response.status == 200 && response.data){
       setTexts(response.data)
     }
@@ -34,7 +36,7 @@ const InputForm = ({ setTexts }) =>  {
         setText(e.target.value)
       } } /> 
       <button onClick={sendText}> send </button>
-      <h6> Most recent texts: </h6>
+      <h6> Most recent logs: </h6>
 
     </div>
     
@@ -45,12 +47,22 @@ const InputForm = ({ setTexts }) =>  {
 const App = () => {
 
   const [texts, setTexts] = useState([])
+
+    useEffect(() => {
+      const getTexts = async () => {
+        const response = await axios.get(router)
+        if(response.status === 200 && response.data) {
+          setTexts(response.data)
+        }
+      }
+      getTexts()
+    }, [])
   
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          Texts
+          Logs
         </p>
         <InputForm setTexts={setTexts}/>
         <DisplayTexts texts={texts} />        
