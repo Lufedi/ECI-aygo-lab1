@@ -1,6 +1,5 @@
 version: '2'
 
-
 services:
   
   aygobackend:
@@ -40,14 +39,16 @@ services:
       - aygobackend
       
   webapp:
+    stdin_open: true
+    tty: true
     build:
       context: ./aygolaboneclient
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - './aygolaboneclient:/app'
-      - '/app/node_modules'
+      - './aygolaboneclient/:/app'
+      - '/app/node_modules' 
     ports:
       - 3001:3000
     environment:
