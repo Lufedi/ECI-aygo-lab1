@@ -1,0 +1,26 @@
+
+//Local host requests
+###
+POST http://localhost:4000/api/text
+Content-Type: application/json
+
+{
+  "value": "K"
+}
+
+###
+GET http://localhost:4000/api/text
+
+
+// Docker requests
+###
+POST http://localhost:5000/api/text
+Content-Type: application/json
+
+{
+  "value": "M"
+}
+
+###
+GET http://localhost:5000/api/text
+
